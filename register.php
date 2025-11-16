@@ -1,3 +1,22 @@
+<?php
+  include "service/database.php";
+
+  $register_message = "";
+
+  if (isset($_POST['register'])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+
+    if ($db->query($sql)) {
+      $register_message = "daftar akun sukses";
+    } else {
+      $register_message = "daftar akun gagal";
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,10 +29,12 @@
   <?php include "layout/header.html" ?>
   
   <h3>REGISTRASI AKUN</h3>
-  <form>
-    <input type="text", placeholder="username", name="username"/> 
-    <input type="password", placeholder="password", name="password"/>
-    <button type="submit">DAFTAR SEKARANG</button>
+  <i><?= $register_message ?></i>
+  
+  <form action="register.php" method="POST">
+    <input type="text" placeholder="username" name="username"/> 
+    <input type="password" placeholder="password" name="password"/>
+    <button type="submit" name="register">DAFTAR SEKARANG</button>
   </form>
 
   <?php include "layout/footer.html" ?>
