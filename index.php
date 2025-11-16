@@ -15,5 +15,3 @@
   <?php include "layout/footer.html" ?>
 </body>
 </html>
-
-uji coba s
